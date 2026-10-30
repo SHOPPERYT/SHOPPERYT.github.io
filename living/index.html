@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>영상 속 살림템 모음</title>
+<style>
+:root{--bg:#fff;--fg:#111;--muted:#666;--card:#f6f6f7;--line:#ddd;--accent:#e4002b}
+@media (prefers-color-scheme:dark){:root{--bg:#111;--fg:#f2f2f2;--muted:#aaa;--card:#1d1d20;--line:#333}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,"Malgun Gothic",sans-serif}
+main{max-width:560px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:22px;margin:0 0 4px}.lead{color:var(--muted);font-size:14px;margin:0 0 14px}
+.search{position:sticky;top:0;background:var(--bg);padding:8px 0 12px;z-index:1}
+.search input{width:100%;font-size:16px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:inherit}
+.card{display:flex;gap:12px;align-items:center;background:var(--card);border-radius:14px;padding:12px;margin:0 0 10px;text-decoration:none;color:inherit}
+.card img,.ph{width:84px;height:84px;border-radius:10px;object-fit:cover;flex:none;background:var(--line)}
+.txt{min-width:0}.meta{font-size:12px;color:var(--muted)}.no{color:var(--accent);font-size:13px;margin-right:4px}
+.product{font-size:16px;font-weight:700;margin:3px 0}.sub{font-size:13px;color:var(--muted)}
+.go{margin-top:6px;font-size:13px;font-weight:700;color:var(--accent)}
+.card:target{outline:2px solid var(--accent)}
+.disc{margin-top:28px;font-size:12px;color:var(--muted);line-height:1.5}.empty{color:var(--muted)}
+</style></head><body><main>
+<h1>영상 속 살림템 모음</h1>
+<p class="lead">쇼츠에 나온 제품을 최신순으로 모았어요. 영상 고정댓글의 <b>번호</b>나 연예인 이름으로 찾아보세요.</p>
+<div class="search"><input id="q" type="search" placeholder="번호·제품·연예인 검색 (예: 3, 류혜영, 세럼)" autocomplete="off"></div>
+<div id="list">
+<p class="empty">곧 제품이 추가됩니다.</p>
+</div>
+<p class="empty" id="none" hidden>찾는 제품이 없어요.</p>
+<p class="disc">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.<br>업데이트 2026-10-30 22:27</p>
+</main>
+<script>
+const q=document.getElementById('q'),cards=[...document.querySelectorAll('.card')],none=document.getElementById('none');
+q.addEventListener('input',()=>{const v=q.value.trim().toLowerCase();let n=0;
+ for(const c of cards){const k=c.dataset.k;const hit=!v||(/^\d+$/.test(v)?k.split(' ')[0]===v:k.includes(v));c.hidden=!hit;n+=hit}
+ none.hidden=n>0;});
+</script>
+</body></html>
